@@ -61,8 +61,8 @@ my $ipmi_preamble       = "ipmitool";
 my %cpu_temp_to_fan_speed;
 $cpu_temp_to_fan_speed{80} = 250;
 $cpu_temp_to_fan_speed{70} = 150;
-$cpu_temp_to_fan_speed{50} = 50;
-$cpu_temp_to_fan_speed{35} = 35;
+$cpu_temp_to_fan_speed{55} = 50;
+$cpu_temp_to_fan_speed{40} = 25;
 $cpu_temp_to_fan_speed{10} = 5;
 
 my %cpu_temp_scale;
