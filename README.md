@@ -1,4 +1,10 @@
 # IPMI Fan Control Daemon for IBM System x3650
+  Forked to work with an M5 variant that has 6 fans all labeled 1A-6A. 
+  Adjusted fan curve for my system to ensure PCIE devices had enough airflow. 
+  Idle CPU temps are about 41c. 
+
+# ORIGINAL FORKED README
+
   This port was made in an attempt to quiet down an IBM system x3650 M4.
 
   #### NOTE:
