@@ -33,7 +33,7 @@ use List::Util qw[min max];
 # More documentation is planned, however I am available to answer basic configuration questions in the mean time.
 
 # System Configuration
-my $hostname            = `BlackPearl`;
+my $hostname            = `hostname`;
 # Remove line ending from $hostname
 $hostname =~ s/\n//g;
 
