@@ -5,9 +5,9 @@
 
   Required config to have 6 fans with 2 banks even though all fans labeled A. 
 
-  Adjusted fan curve for my system to ensure PCIE devices had enough airflow. 
+  Adjusted fan curve for to maintain 40c idle and about under 2000RPM. 
 
-  Idle CPU temps are about 41c. 
+  Idle CPU temps are about 40c. With fan speed at 25% or 1888RPM.
 
   Currently running on Unraid via User Scripts and IPMItools installed via Nerd Tools. 
 
