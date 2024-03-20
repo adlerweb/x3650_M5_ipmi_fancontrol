@@ -1,7 +1,10 @@
 # IPMI Fan Control Daemon for IBM System x3650
-  Forked to work with an M5 variant that has 6 fans all labeled 1A-6A. 
+  Forked to work with an M5 variant that has 6 fans all labeled 1A-6A. Two CPUs in my system. 
+  Required config to have 6 fans with 2 banks even though all fans labeled A. 
   Adjusted fan curve for my system to ensure PCIE devices had enough airflow. 
   Idle CPU temps are about 41c. 
+
+  Currently running on Unraid via User Scripts and IPMItools installed via Nerd Tools. 
 
 # ORIGINAL FORKED README
 
