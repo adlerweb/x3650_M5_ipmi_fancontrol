@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+import sys
 import pyipmi
 import pyipmi.interfaces
 import numpy as np
@@ -101,4 +102,5 @@ while True:
 
     if verbose >= 4:
             print(f"Sleeping for {sleep_sec} seconds")
+    sys.stdout.flush()
     sleep(sleep_sec)

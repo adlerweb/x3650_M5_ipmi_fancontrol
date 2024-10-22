@@ -1,0 +1,12 @@
+[Unit] 
+Description=IPMI Fan Control Daemon
+
+[Service]
+Type=simple
+# Change path accordingly
+ExecStart=/bin/bash '/opt/x3650_M5_ipmi_fancontrol/ipmi_fancontrol.sh'
+SyslogIdentifier=ipmi_fancontrol
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
