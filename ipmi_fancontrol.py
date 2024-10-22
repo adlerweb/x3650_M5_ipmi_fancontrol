@@ -12,7 +12,6 @@ from time import sleep
 # Get IDs using ipmitool.py -I ipmitool -o interface_type=open sdr list
 cpu_temps = (0x133, 0x134)
 fan_banks = 2
-sleep_sec = 3
 
 fan_curve = { # Temprature: Fan-Speed
         30: 0, 
@@ -23,8 +22,6 @@ fan_curve = { # Temprature: Fan-Speed
         70: 85,
         80: 100
     }
-
-verbose = 1
 
 ###########
 
@@ -74,6 +71,21 @@ def set_fan_speed(ipmic, speed):
             print(f"Setting Bank {bank} to 0x{speed:02x}")
         ipmic.raw_command(0, 0x3a, (0x07, bank, speed, 0x01))
 
+parser = argparse.ArgumentParser(description="Slow down IPMI fans based on CPU temperature")
+group = parser.add_mutually_exclusive_group()
+group.add_argument("-v", '--verbose', action='count', default=0, help="increase verbosity")
+group.add_argument("-q", "--quiet", action="store_true", help="hide all output")
+parser.add_argument("-t", "--time", type=int, default="3", help="seconds between checks")
+args = parser.parse_args()
+
+verbose = 1
+if args.quiet:
+    verbose = 0
+elif args.verbose:
+    verbose = 1 + args.verbose
+
+sleep_sec = args.time
+
 ipmii = pyipmi.interfaces.create_interface('ipmitool', interface_type='open')
 ipmic = pyipmi.create_connection(ipmii)
 ipmic.session.establish()
@@ -87,4 +99,6 @@ while True:
     set_fan_speed(ipmic, fan_speed)
     last_speed = fan_speed
 
+    if verbose >= 4:
+            print(f"Sleeping for {sleep_sec} seconds")
     sleep(sleep_sec)
