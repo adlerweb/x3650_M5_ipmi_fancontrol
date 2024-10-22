@@ -61,7 +61,11 @@ def get_fan_target_speed(fan_intp, temperature, last_speed=-1):
     if verbose >= 3:
         print(f"Target fan speed is now {fan_speed:.0f}% (0x{fan_speed_hex:02x}) for peak temperature {temperature}°C")
     elif verbose >= 1 and last_speed != fan_speed_hex:
-        print(f"Target fan speed changed to {fan_speed:.0f}% (0x{fan_speed_hex:02x}) for peak temperature {temperature}°C")
+        if last_speed >= 0:
+            last_speed_p = round(((last_speed / 0xFF) * 100), 0)
+        else:
+            last_speed_p = "??"
+        print(f"Target fan speed changed from {last_speed_p}% (0x{last_speed:02x}) to {fan_speed:.0f}% (0x{fan_speed_hex:02x}) @ {temperature}°C")
     return fan_speed_hex
 
 def set_fan_speed(ipmic, speed):
@@ -76,7 +80,7 @@ ipmic.session.establish()
 
 fan_intp = generate_fan_curve(fan_curve)
 
-last_speed = 0
+last_speed = -1
 while True:
     temperature = get_cpu_temperature(ipmic)
     fan_speed = get_fan_target_speed(fan_intp, temperature, last_speed)
